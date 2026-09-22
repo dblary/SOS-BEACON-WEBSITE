@@ -106,14 +106,13 @@
       </nav>
 
       <div class="nav__cta">
-        <a class="btn btn-ghost btn-sm" href="https://github.com/dblary/SOS-BEACON-WEBSITE" target="_blank"
-          rel="noopener noreferrer" aria-label="View source code on GitHub">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+        <button type="button" class="btn btn-ghost btn-sm open-download-modal" aria-label="Download APK">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round">
-            <path d="M8 6 3 12l5 6M16 6l5 6-5 6" />
+            <path d="M12 4v11M7 11l5 5 5-5M5 20h14" />
           </svg>
-          GitHub
-        </a>
+          Download APK
+        </button>
         <a class="btn btn-primary btn-sm" href="https://play.google.com/store/games?hl=en" target="_blank"
           rel="noopener noreferrer" aria-label="Get it on Google Play">
           <svg viewBox="12 9 32 35" width="16" height="16" aria-hidden="true" style="flex: none;">
@@ -176,10 +175,13 @@
         </svg>
         Get on Google Play
       </a>
-      <a class="btn btn-ghost" href="https://github.com/dblary/SOS-BEACON-WEBSITE" target="_blank"
-        rel="noopener noreferrer" style="justify-content: center;">
-        View on GitHub
-      </a>
+      <button type="button" class="btn btn-ghost open-download-modal" style="justify-content: center;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" style="width: 18px; height: 18px;">
+          <path d="M12 4v11M7 11l5 5 5-5M5 20h14" />
+        </svg>
+        Download APK
+      </button>
     </div>
   </div>
 
@@ -200,14 +202,13 @@
               class="hero__playstore-btn" id="heroPlayStoreBtn" aria-label="Get it on Google Play">
               <img src="/assets/images/google-play-badge.svg" alt="Get it on Google Play" width="180" height="52">
             </a>
-            <a href="https://github.com/dblary/SOS-BEACON-WEBSITE" target="_blank" rel="noopener noreferrer"
-              class="btn btn-ghost" id="heroGithubBtn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            <button type="button" class="btn btn-ghost open-download-modal" id="heroDownloadBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round">
-                <path d="M8 6 3 12l5 6M16 6l5 6-5 6" />
+                <path d="M12 4v11M7 11l5 5 5-5M5 20h14" />
               </svg>
-              View Source on GitHub
-            </a>
+              Download APK
+            </button>
           </div>
 
         </div>
@@ -814,8 +815,7 @@
       </div>
 
       <div class="footer__links">
-        <a href="https://github.com/dblary/SOS-BEACON-WEBSITE" target="_blank" rel="noopener noreferrer">GitHub
-          Repository</a>
+        <a href="#downloadModal" class="open-download-modal">Download APK</a>
         <a href="#screens">Screens</a>
         <a href="#privacy">Privacy Model</a>
         <a href="https://play.google.com/store/games?hl=en" target="_blank" rel="noopener noreferrer"
@@ -836,8 +836,8 @@
       </button>
 
       <div class="modal-header">
-        <h3 id="modal-title">Download SOS BEACONAPK</h3>
-        <p>Direct from the official open-source repository. Version 1.2.0 for Android.</p>
+        <h3 id="modal-title">Download SOS BEACON APK</h3>
+        <p>Direct official package release. Version 1.2.0 for Android.</p>
       </div>
 
       <div class="modal-action-box"
