@@ -13,7 +13,6 @@ Thumbs.db
 *.bak
 
 # Temporary / build
-dist/
 .cache/
 .system_generated/
 scratch/

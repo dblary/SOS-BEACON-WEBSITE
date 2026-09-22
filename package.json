@@ -1,10 +1,11 @@
 {
   "name": "sos-beacon-website",
   "version": "1.2.0",
-  "description": "Production landing page and interactive showcase for the SOS BEACONAndroid emergency response app.",
+  "description": "Production landing page and interactive showcase for the SOS BEACON Android emergency response app.",
   "scripts": {
-    "start": "npx -y serve . -l 3000",
-    "dev": "npx -y serve . -l 3000"
+    "build": "node build.js",
+    "start": "node server.js",
+    "dev": "node server.js"
   },
   "keywords": [
     "sos-beacon",
