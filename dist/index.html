@@ -214,20 +214,31 @@
         </div>
 
         <div class="hero__visual">
+          <!-- 3D Holographic Perspective Radar Waves -->
+          <div class="beacon-radar-3d" aria-hidden="true">
+            <div class="radar-ring r1"></div>
+            <div class="radar-ring r2"></div>
+            <div class="radar-ring r3"></div>
+            <div class="radar-sweep"></div>
+          </div>
           <div class="hero__glow" aria-hidden="true"></div>
-          <div class="hero__statchip chip-a"><b>&lt;3s</b>GPS lock time</div>
-          <div class="hero__statchip chip-b"><b>30+</b>countries auto-detected</div>
 
-          <div class="phone" id="heroPhone" aria-label="SOS BEACONMobile Preview">
-            <div class="phone__speaker"></div>
-            <div class="phone__screen">
+          <!-- 3D Perspective Stage -->
+          <div class="phone-3d-stage">
+            <div class="hero__statchip chip-a"><b>&lt;3s</b>GPS lock time</div>
+            <div class="hero__statchip chip-b"><b>30+</b>countries auto-detected</div>
 
-              <!-- Shot View (Authentic Screenshot) -->
-              <div id="heroShotView" style="height: 100%;">
-                <img class="phone__shot" src="/assets/images/screen-trigger.png"
-                  alt="SOS BEACONemergency trigger home screen on Android phone" fetchpriority="high" width="266"
-                  height="578">
-              </div>
+            <div class="phone" id="heroPhone" aria-label="SOS BEACON Mobile Preview">
+              <div class="phone__speaker"></div>
+              <div class="phone__glare" aria-hidden="true"></div>
+              <div class="phone__screen">
+
+                <!-- Shot View (Authentic Screenshot) -->
+                <div id="heroShotView" style="height: 100%;">
+                  <img class="phone__shot" src="/assets/images/screen-trigger.png"
+                    alt="SOS BEACON emergency trigger home screen on Android phone" fetchpriority="high" width="266"
+                    height="578">
+                </div>
 
               <!-- Interactive Simulator View -->
               <div id="heroSimView" class="phone__sim" style="display: none;">
@@ -271,6 +282,7 @@
 
             </div>
           </div>
+          <!-- End 3D Perspective Stage -->
 
           <!-- Interactive Simulator Toggle Button -->
           <div class="sim-toggle-wrap">
