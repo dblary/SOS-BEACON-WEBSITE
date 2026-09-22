@@ -32,9 +32,9 @@
   <meta name="twitter:image" content="https://sosbeacon.app/assets/images/screen-trigger.png">
 
   <!-- Favicon & PWA -->
-  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-  <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+  <link rel="manifest" href="/assets/manifest.json">
+  <link rel="apple-touch-icon" href="/assets/images/favicon.svg">
 
   <!-- Google Fonts Preconnect & Stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,6 @@
     rel="stylesheet">
 
   <!-- Core Stylesheet -->
-  <link rel="stylesheet" href="assets/css/style.css">
 
   <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -67,6 +66,8 @@
     }
   }
   </script>
+  <script type="module" crossorigin src="/assets/index.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/css/index.css">
 </head>
 
 <body>
@@ -215,7 +216,7 @@
 
               <!-- Shot View (Authentic Screenshot) -->
               <div id="heroShotView" style="height: 100%;">
-                <img class="phone__shot" src="assets/images/screen-trigger.png"
+                <img class="phone__shot" src="/assets/images/screen-trigger.png"
                   alt="SOS BEACONemergency trigger home screen on Android phone" fetchpriority="high" width="266"
                   height="578">
               </div>
@@ -324,7 +325,7 @@
           <div class="phone" id="galleryPhone" aria-hidden="true">
             <div class="phone__speaker"></div>
             <div class="phone__screen">
-              <img class="phone__shot" id="galleryShot" src="assets/images/screen-trigger.png"
+              <img class="phone__shot" id="galleryShot" src="/assets/images/screen-trigger.png"
                 alt="SOS BEACONscreenshot view" width="266" height="578" loading="lazy">
             </div>
           </div>
@@ -890,9 +891,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="assets/js/siren-synth.js"></script>
-  <script src="assets/js/helplines-data.js"></script>
-  <script src="assets/js/main.js"></script>
 </body>
 
 </html>
