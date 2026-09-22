@@ -11,8 +11,8 @@ const CONFIG = {
   apkSize: '8.4 MB',
   apkFileName: 'SOS-Beacon-v1.2.0-release.apk',
   sha256: '9a7d8c4e5f6b1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b',
-  githubUrl: 'https://github.com/trackizer/sos-beacon',
-  downloadUrl: 'https://github.com/trackizer/sos-beacon/releases/latest/download/SOS-Beacon-release.apk'
+  githubUrl: 'https://github.com/dblary/SOS-BEACON-WEBSITE',
+  downloadUrl: 'https://github.com/dblary/SOS-BEACON-WEBSITE/releases/latest/download/SOS-Beacon-release.apk'
 };
 
 document.addEventListener('DOMContentLoaded', () => {
