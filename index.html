@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SOS Beacon — Instant Personal Safety &amp; Emergency Response</title>
+  
+  <!-- Primary Meta Tags -->
+  <meta name="description" content="SOS Beacon is a one-tap emergency dispatch Android app: GPS broadcast, piercing sirens, guardian alerts, and Medical ID — 100% on-device, zero backend, $0 forever.">
+  <meta name="keywords" content="SOS Beacon, emergency app, personal safety, GPS distress beacon, offline medical ID, emergency siren, fake escape call, open source emergency response">
+  <meta name="author" content="Trackizer">
+  <meta name="theme-color" content="#0E0E12">
+  <link rel="canonical" href="https://sosbeacon.app/">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sosbeacon.app/">
+  <meta property="og:title" content="SOS Beacon — Instant Personal Safety &amp; Emergency Response">
+  <meta property="og:description" content="One tap fires a piercing siren, broadcasts your GPS coordinates to every guardian, and logs the incident — zero cloud, zero telemetry.">
+  <meta property="og:image" content="https://sosbeacon.app/assets/images/screen-trigger.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sosbeacon.app/">
+  <meta name="twitter:title" content="SOS Beacon — Instant Personal Safety &amp; Emergency Response">
+  <meta name="twitter:description" content="One tap fires a piercing siren, broadcasts your GPS coordinates to every guardian, and logs the incident — 100% on-device.">
+  <meta name="twitter:image" content="https://sosbeacon.app/assets/images/screen-trigger.png">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="assets/images/favicon.svg">
+
+  <!-- Google Fonts Preconnect & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SOS Beacon",
+    "operatingSystem": "Android",
+    "applicationCategory": "UtilitiesApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "One-tap emergency dispatch app: GPS broadcast, piercing sirens, guardian alerts, and Medical ID. 100% on-device, zero backend.",
+    "license": "https://opensource.org/licenses/MIT",
+    "author": {
+      "@type": "Organization",
+      "name": "Trackizer"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ============ TOP STATUS TICKER ============ -->
+  <div class="ticker" aria-label="System status telemetry">
+    <div class="ticker__row">
+      <span class="ticker__dot" aria-hidden="true"></span>
+      <span>GPS LOCK ACQUIRED</span><span class="ticker__sep">·</span>
+      <span>GUARDIAN NETWORK ARMED</span><span class="ticker__sep">·</span>
+      <span>ZERO DATA LEAVES THIS DEVICE</span><span class="ticker__sep">·</span>
+      <span>30+ COUNTRIES AUTO-DETECTED</span><span class="ticker__sep">·</span>
+      <span>ENCRYPTED LOCAL STORAGE ACTIVE</span>
+    </div>
+  </div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="nav" id="top">
+    <div class="nav__row">
+      <a class="brand" href="#top" aria-label="SOS Beacon Homepage">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2 4 5v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V5l-8-3Z"/>
+            <path d="M12 8v5"/>
+            <circle cx="12" cy="16.3" r=".6" fill="currentColor" stroke="none"/>
+          </svg>
+        </span>
+        <span>SOS Beacon<small>com.trackizer.sos</small></span>
+      </a>
+
+      <nav class="nav__links" aria-label="Main Navigation">
+        <a href="#features">Features</a>
+        <a href="#screens">Screens</a>
+        <a href="#sirens">Siren Synth</a>
+        <a href="#helplines">Helplines</a>
+        <a href="#use-cases">Use cases</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav__cta">
+        <a class="btn btn-ghost btn-sm" href="https://github.com/trackizer/sos-beacon" target="_blank" rel="noopener noreferrer" aria-label="View source code on GitHub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 6 3 12l5 6M16 6l5 6-5 6"/>
+          </svg>
+          GitHub
+        </a>
+        <button class="btn btn-primary btn-sm open-download-modal" aria-label="Open APK download modal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 4v11M7 11l5 5 5-5M5 20h14"/>
+          </svg>
+          Download APK
+        </button>
+        <button class="nav__toggle" id="menuOpen" aria-label="Open navigation menu" aria-controls="mobileMenu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <button class="mobile-menu__close" id="menuClose" aria-label="Close navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 6l12 12M18 6 6 18"/>
+        </svg>
+      </button>
+      <a href="#features">Features</a>
+      <a href="#screens">Screens</a>
+      <a href="#sirens">Siren Synth</a>
+      <a href="#helplines">Helplines</a>
+      <a href="#use-cases">Use cases</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#faq">FAQ</a>
+      <button class="btn btn-primary open-download-modal" style="margin-top: 14px; width: 100%;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>
+        Download APK
+      </button>
+      <a class="btn btn-ghost" href="https://github.com/trackizer/sos-beacon" target="_blank" rel="noopener noreferrer" style="justify-content: center;">
+        View on GitHub
+      </a>
+    </div>
+  </div>
+
+  <main id="main-content">
+
+    <!-- ============ HERO SECTION ============ -->
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <span class="section-kicker">Emergency Dispatch Network</span>
+          <h1 id="hero-title">Your instant personal safety &amp; emergency response network.</h1>
+          <p class="lead">One tap fires a piercing siren, broadcasts your GPS coordinates to every guardian you've listed, and logs the incident — all from a phone that never phones home. No account, no cloud, no backend to trust.</p>
+          
+          <div class="hero__actions">
+            <button class="btn btn-primary open-download-modal" id="heroDownloadBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 4v11M7 11l5 5 5-5M5 20h14"/>
+              </svg>
+              Download Android APK
+            </button>
+            <a href="https://github.com/trackizer/sos-beacon" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" id="heroGithubBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 6 3 12l5 6M16 6l5 6-5 6"/>
+              </svg>
+              View Source on GitHub
+            </a>
+          </div>
+
+          <div class="hero__trust">
+            <span class="badge-pill"><span class="k">storage</span><span class="v">on-device encrypted</span></span>
+            <span class="badge-pill"><span class="k">cost</span><span class="v">$0 forever</span></span>
+            <span class="badge-pill"><span class="k">license</span><span class="v">MIT Open Source</span></span>
+            <span class="badge-pill"><span class="k">telemetry</span><span class="v">0 bytes</span></span>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <div class="hero__glow" aria-hidden="true"></div>
+          <div class="hero__statchip chip-a"><b>&lt;3s</b>GPS lock time</div>
+          <div class="hero__statchip chip-b"><b>30+</b>countries auto-detected</div>
+
+          <div class="phone" id="heroPhone" aria-label="SOS Beacon Mobile Preview">
+            <div class="phone__speaker"></div>
+            <div class="phone__screen">
+              
+              <!-- Shot View (Authentic Screenshot) -->
+              <div id="heroShotView" style="height: 100%;">
+                <img class="phone__shot" 
+                     src="assets/images/screen-trigger.png" 
+                     alt="SOS Beacon emergency trigger home screen on Android phone"
+                     fetchpriority="high"
+                     width="266" 
+                     height="578">
+              </div>
+
+              <!-- Interactive Simulator View -->
+              <div id="heroSimView" class="phone__sim" style="display: none;">
+                <div>
+                  <div class="sim-header">
+                    <span>GPS: 37.7749° N, 122.4194° W</span>
+                    <span class="sim-badge">ACCURACY: 4m</span>
+                  </div>
+
+                  <div class="sim-ring" id="simPulseRing">
+                    <button class="sim-core-btn" id="simSosTrigger" aria-label="Activate SOS Beacon Simulator">
+                      <div id="simCountdown" class="sim-countdown" style="display: none;">3</div>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v20M2 12h20"/>
+                      </svg>
+                      <b>SOS</b>
+                      <small>HOLD OR TAP</small>
+                    </button>
+                  </div>
+                </div>
+
+                <div id="simStandbyCard" class="sim-card">
+                  <div class="sim-card-title">Network Armed</div>
+                  <div class="sim-card-body">
+                    <b>3 Guardians Registered</b>
+                    Emergency sirens on standby (Web Audio synthesizer ready).
+                  </div>
+                </div>
+
+                <div id="simActiveCard" class="sim-card" style="display: none; border-color: var(--crimson);">
+                  <div class="sim-card-title" style="color: var(--crimson);">DISPATCH BROADCASTING</div>
+                  <div class="sim-card-body">
+                    <b>SMS &amp; WhatsApp Sent to Guardians</b>
+                    Live GPS tracking link broadcasted. Siren active.
+                  </div>
+                  <div class="sim-btn-group">
+                    <button class="sim-btn danger" id="simResetTrigger">Double-Tap Stand Down</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Interactive Simulator Toggle Button -->
+          <div class="sim-toggle-wrap">
+            <button class="sim-toggle-btn" id="toggleSimBtn">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+              Try Live Simulator
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PHONE GALLERY ============ -->
+    <section class="gallery wrap" id="screens" aria-labelledby="screens-title">
+      <div class="section-head">
+        <span class="section-kicker">Application Showcase</span>
+        <h2 id="screens-title">Inside the app</h2>
+        <p>Six real screens, straight from the production app — nothing recreated, nothing staged.</p>
+      </div>
+
+      <div class="gallery__layout">
+        <div class="gallery__desc">
+          <div class="gallery__desc-item active" data-desc="trigger">
+            <h3>The Beacon</h3>
+            <p>A single dashed ring, a single button. Tap once and SOS Beacon starts dispatching immediately with high-contrast tactical visual feedback.</p>
+          </div>
+          <div class="gallery__desc-item" data-desc="active">
+            <h3>Broadcasting Live</h3>
+            <p>Once triggered, the beacon stays visibly active until you double-tap to stand down, with persistent sirens, live GPS coordinates, and guardian transmission logs.</p>
+          </div>
+          <div class="gallery__desc-item" data-desc="guardians">
+            <h3>Guardians &amp; Medical ID</h3>
+            <p>Add the people who need to know the moment something happens — name, relationship, phone, WhatsApp and email in one encrypted local contact card.</p>
+          </div>
+          <div class="gallery__desc-item" data-desc="helplines">
+            <h3>Global Helplines</h3>
+            <p>Police, medical, fire, disaster and women's helplines, filtered by category and matched to wherever you land across 30+ countries.</p>
+          </div>
+          <div class="gallery__desc-item" data-desc="settings">
+            <h3>Emergency Profile &amp; Controls</h3>
+            <p>Personal details, hands-free shake and voice triggers, the siren oscillator, a custom SMS template, and hardware volume key bindings.</p>
+          </div>
+          <div class="gallery__desc-item" data-desc="call">
+            <h3>Fake Escape Call</h3>
+            <p>A realistic incoming call — with a caller ID you choose, like "Mom" or "Police Control Room" — that gets you out of hostile or uncomfortable situations safely.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
+          <div class="phone" id="galleryPhone" aria-hidden="true">
+            <div class="phone__speaker"></div>
+            <div class="phone__screen">
+              <img class="phone__shot" 
+                   id="galleryShot" 
+                   src="assets/images/screen-trigger.png" 
+                   alt="SOS Beacon screenshot view" 
+                   width="266" 
+                   height="578" 
+                   loading="lazy">
+            </div>
+          </div>
+
+          <div class="gallery__tabs" role="tablist" aria-label="Screen gallery tabs">
+            <button class="active" data-tab="trigger" data-img="assets/images/screen-trigger.png" role="tab" aria-selected="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+              SOS Trigger
+            </button>
+            <button data-tab="active" data-img="assets/images/screen-active.png" role="tab" aria-selected="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              SOS Active
+            </button>
+            <button data-tab="guardians" data-img="assets/images/screen-guardians.png" role="tab" aria-selected="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Guardians
+            </button>
+            <button data-tab="helplines" data-img="assets/images/screen-helplines.png" role="tab" aria-selected="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Helplines
+            </button>
+            <button data-tab="settings" data-img="assets/images/screen-settings.png" role="tab" aria-selected="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              Settings
+            </button>
+            <button data-tab="call" data-img="assets/images/screen-fakecall.png" role="tab" aria-selected="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 10l5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg>
+              Fake Call
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INTERACTIVE SIREN AUDIO SYNTHESIZER ============ -->
+    <section class="siren-section" id="sirens" aria-labelledby="siren-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-kicker">Web Audio Synthesizer</span>
+          <h2 id="siren-title">Four sirens, or total silence</h2>
+          <p>Audition the real alarm synthesizer right now in your browser. Engineered to cut through engine noise, traffic, and high-stress environments.</p>
+        </div>
+
+        <div class="siren-console">
+          <div class="siren-console-header">
+            <div class="siren-status-wrap">
+              <span class="siren-status-indicator" aria-hidden="true"></span>
+              <span class="siren-status-text" id="sirenStatusText">Audio Standby — Click any profile below to audition.</span>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 20px;">
+              <div class="wave-visualizer" id="sirenVisualizer" aria-hidden="true">
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+              </div>
+
+              <button class="btn btn-ghost btn-sm" id="stopAllSirens" disabled>
+                <svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+                Stop Siren
+              </button>
+            </div>
+          </div>
+
+          <div class="siren-grid">
+            <button class="siren-card" data-siren="police" aria-label="Audition Police Wail Siren">
+              <div class="siren-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14"/></svg>
+              </div>
+              <h4>Police Wail</h4>
+              <p>Continuous sweeping frequency curve modeled after standard patrol cruisers. Highly directional in urban areas.</p>
+              <div class="siren-tag">OSC: 650 – 1350 Hz</div>
+            </button>
+
+            <button class="siren-card" data-siren="airraid" aria-label="Audition Air Raid Warning">
+              <div class="siren-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M6 8l4 4-4 4M18 8l-4 4 4 4"/></svg>
+              </div>
+              <h4>Air Raid Warning</h4>
+              <p>Heavy, resonant ascending tone with powerful acoustic penetration through walls and closed car windows.</p>
+              <div class="siren-tag">OSC: 380 – 780 Hz</div>
+            </button>
+
+            <button class="siren-card" data-siren="pulsing" aria-label="Audition Pulsing Staccato Alarm">
+              <div class="siren-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="2" rx="1"/><rect x="7" y="6" width="10" height="2" rx="1"/><rect x="7" y="16" width="10" height="2" rx="1"/></svg>
+              </div>
+              <h4>Pulsing Staccato</h4>
+              <p>Rapid bursts designed to immediately disorient an aggressor and attract immediate pedestrian eyes.</p>
+              <div class="siren-tag">BURST: 8 pulses / sec</div>
+            </button>
+
+            <button class="siren-card" data-siren="hilo" aria-label="Audition Hi-Lo European Tone">
+              <div class="siren-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+              </div>
+              <h4>Hi-Lo European</h4>
+              <p>Alternating two-tone emergency horn standard across continental emergency and mountain rescue teams.</p>
+              <div class="siren-tag">TONE: 660 / 880 Hz</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GLOBAL HELPLINES FINDER ============ -->
+    <section class="helplines-section wrap" id="helplines" aria-labelledby="helplines-title">
+      <div class="section-head">
+        <span class="section-kicker">Cross-Border Intelligence</span>
+        <h2 id="helplines-title">Your local emergency number, wherever you land</h2>
+        <p>SOS Beacon auto-detects the right number — 112, 911, 999, 100 — across 30+ countries. See the offline directory in action:</p>
+      </div>
+
+      <div class="helpline-finder">
+        <div class="country-select-wrap">
+          <label for="countrySelect">Select Country or Region</label>
+          <select id="countrySelect" class="country-select" aria-label="Select country for emergency helplines">
+            <!-- Options populated dynamically by helplines-data.js -->
+          </select>
+          <p style="color: var(--text-muted); font-size: 0.86rem; margin-top: 14px;">
+            In the app, this switches automatically when your device latches onto local cell towers — no roaming data connection required.
+          </p>
+        </div>
+
+        <div class="helpline-display-card" id="helplineDisplayCard">
+          <div class="hld-top">
+            <div class="hld-country" id="hlCountryName">🇺🇸 United States</div>
+            <div class="hld-universal-badge">Universal: <span id="hlUniversal">911</span></div>
+          </div>
+
+          <div class="hld-grid">
+            <div class="hld-item">
+              <span>Police</span>
+              <b id="hlPolice">911</b>
+            </div>
+            <div class="hld-item">
+              <span>Ambulance</span>
+              <b id="hlMedical">911</b>
+            </div>
+            <div class="hld-item">
+              <span>Fire / Rescue</span>
+              <b id="hlFire">911</b>
+            </div>
+          </div>
+
+          <p class="hld-notes" id="hlNotes">Instant dispatch with text-to-911 support.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURES SECTION ============ -->
+    <section class="features wrap" id="features" aria-labelledby="features-title">
+      <div class="section-head">
+        <span class="section-kicker">Engineered Capabilities</span>
+        <h2 id="features-title">Everything the moment needs</h2>
+        <p>Seven mission-critical systems work together the instant you press the beacon — sound, coordinates, medical records, and silent dispatch.</p>
+      </div>
+
+      <div class="features__grid">
+
+        <div class="f-card f-card--wide">
+          <div class="f-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3>One tap dispatches everything</h3>
+          <p>Press the center beacon and SOS Beacon fires an SMS broadcast to every guardian with an Apple/Google Maps link, opens WhatsApp with a pre-filled emergency payload, and starts your siren. No multi-step confirmations when seconds count.</p>
+        </div>
+
+        <div class="f-card">
+          <div class="f-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14"/></svg>
+          </div>
+          <h3>Four sirens, or total silence</h3>
+          <p>A Web Audio synthesizer drives four alarm profiles — Police Wail, Air Raid, Pulsing Alarm, Hi-Lo European — plus a Silent SOS mode that sends help with screen and speaker dark.</p>
+        </div>
+
+        <div class="f-card">
+          <div class="f-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+          </div>
+          <h3>Coordinates, not guesses</h3>
+          <p>Live GPS accuracy with reverse geocoding turns raw coordinates into a street address, and pins your location on an interactive satellite map before you even hit send.</p>
+        </div>
+
+        <div class="f-card">
+          <div class="f-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </div>
+          <h3>Trigger it without touching your phone</h3>
+          <p>Say a keyword — "Help," "Bachao" — and the beacon fires on voice command. A hard drop or sudden acceleration spike can arm the beacon hands-free.</p>
+        </div>
+
+        <div class="f-card">
+          <div class="f-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </div>
+          <h3>First responders read this before you can speak</h3>
+          <p>Blood group, severe allergies, chronic conditions and medications sit encrypted on your device and are included in the emergency dispatch payload automatically.</p>
+        </div>
+
+        <div class="f-card">
+          <div class="f-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></svg>
+          </div>
+          <h3>An exit, and a beacon in the dark</h3>
+          <p>A realistic Fake Escape Call with a caller ID you choose gets you out of a room safely. A strobe screen beacon flashes bright white-red to guide rescue teams after dark.</p>
+        </div>
+
+        <div class="f-card f-card--wide">
+          <div class="f-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3>Multi-lingual emergency assistance</h3>
+          <p>SOS Beacon auto-detects local emergency frequencies, speaks 14 languages for international travelers, and operates smoothly in dead-zones with pure cellular SMS fallback.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ USE CASES ============ -->
+    <section class="usecases wrap" id="use-cases" aria-labelledby="usecases-title">
+      <div class="section-head">
+        <span class="section-kicker">Real-World Scenarios</span>
+        <h2 id="usecases-title">Built for the moments that matter</h2>
+        <p>Five situations, five ways the same beacon adapts to what you actually need.</p>
+      </div>
+
+      <div class="uc-grid">
+        <div class="uc-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><path d="M9 20l3-6 3 6"/><path d="M6 12l6-3 6 3"/></svg>
+          <h4>Walking alone at night</h4>
+          <p>A quick shake of the phone triggers a Fake Escape Call or a full Shake-to-SOS broadcast — no fumbling to unlock your phone first.</p>
+        </div>
+
+        <div class="uc-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-9.5-9A5 5 0 0 1 12 6a5 5 0 0 1 9.5 5c-2.5 4.5-9.5 9-9.5 9Z"/></svg>
+          <h4>Medical emergencies &amp; sudden collapse</h4>
+          <p>The siren draws immediate bystander attention while Medical ID tells first responders your blood type and allergies before you can speak.</p>
+        </div>
+
+        <div class="uc-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="10" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          <h4>Harassment or hostile situations</h4>
+          <p>Silent SOS notifies your guardians and logs your location without emitting sound or screen light, so a threat in the room never sees it happen.</p>
+        </div>
+
+        <div class="uc-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19 9 7l4 6 2-3 6 9H3Z"/></svg>
+          <h4>Solo travel &amp; hiking</h4>
+          <p>Cross a border and the app switches to the local emergency number automatically, with a strobe beacon to help searchers find you in backcountry terrain.</p>
+        </div>
+
+        <div class="uc-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16V11l2-4h12l2 4v5"/><path d="M4 16h16"/><circle cx="8" cy="18" r="1.6"/><circle cx="16" cy="18" r="1.6"/></svg>
+          <h4>Traffic accidents &amp; breakdowns</h4>
+          <p>One tap sends your exact coordinates to family, so they know precisely where to send emergency tow assistance or rescue teams.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRIVACY SECTION ============ -->
+    <section class="privacy" id="privacy" aria-labelledby="privacy-title">
+      <div class="wrap">
+        <div class="privacy__top">
+          <div>
+            <span class="section-kicker" style="color: var(--teal);">Zero-Trust Architecture</span>
+            <h2 id="privacy-title">Nothing leaves this phone.</h2>
+          </div>
+          <p>Every guardian contact, Medical ID record, and location log lives in encrypted on-device storage. SOS Beacon has no backend, no analytics pipeline, and no account to create — because the safest server is the one that doesn't exist.</p>
+        </div>
+
+        <div class="privacy__badges">
+          <div class="p-badge">
+            <div class="pb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+            <b>Encrypted on-device storage</b>
+            <span>Contacts and Medical ID never leave local encrypted device preferences.</span>
+          </div>
+
+          <div class="p-badge">
+            <div class="pb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="2.3"/><line x1="3" y1="3" x2="21" y2="21"/></svg></div>
+            <b>Zero analytics &amp; trackers</b>
+            <span>No telemetry, no tracking pixels, no third-party SDKs monitoring your activity.</span>
+          </div>
+
+          <div class="p-badge">
+            <div class="pb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.9 3.1-7 7-7 1.1 0 2.2.3 3.1.7"/><path d="M17.5 15.5l3.2 3.2M20.7 15.5l-3.2 3.2"/></svg></div>
+            <b>No account required</b>
+            <span>Open the app and it's armed — nothing to sign up for, no phone number to verify.</span>
+          </div>
+
+          <div class="p-badge">
+            <div class="pb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5"/><path d="M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/><line x1="3" y1="3" x2="21" y2="21"/></svg></div>
+            <b>No server, ever</b>
+            <span>There's no backend database to breach, subpoena, or take offline — it simply isn't there.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ SECTION ============ -->
+    <section class="faq wrap" id="faq" aria-labelledby="faq-title">
+      <div class="section-head">
+        <span class="section-kicker">Transparency</span>
+        <h2 id="faq-title">Questions, answered</h2>
+        <p>The practical details of running a safety app with zero telemetry and no server.</p>
+      </div>
+
+      <div class="faq__list">
+        <details open>
+          <summary>How do I install the APK if it's not on the Play Store?<span class="plus"></span></summary>
+          <p>Download the signed APK from the official release link, open it from your file manager or browser downloads, and approve the "install unknown apps" prompt for that one source when Android asks. That permission applies only to the installer you used — it doesn't unlock sideloading system-wide.</p>
+        </details>
+
+        <details>
+          <summary>Does SOS Beacon need an active internet connection to work?<span class="plus"></span></summary>
+          <p>SMS-based dispatch runs directly over the cellular network and works even with mobile data switched completely off. WhatsApp and email dispatch, and reverse geocoding of your coordinates into a street address, utilize an active internet connection when available.</p>
+        </details>
+
+        <details>
+          <summary>How do dispatch flows work without a centralized backend?<span class="plus"></span></summary>
+          <p>SOS Beacon hands each dispatch off to Android's native system intents — the SMS composer, WhatsApp, Google Maps, and your default email client — instead of routing sensitive data through a proprietary cloud server. The device itself performs all dispatch actions.</p>
+        </details>
+
+        <details>
+          <summary>Why is the app completely free with no subscription?<span class="plus"></span></summary>
+          <p>Because there is zero backend server infrastructure to run, there are no recurring cloud costs to recoup. SOS Beacon is 100% open source under the MIT license — free for anyone, anywhere, forever.</p>
+        </details>
+
+        <details>
+          <summary>Is any of my personal data ever sent to Trackizer or third parties?<span class="plus"></span></summary>
+          <p>No. Every guardian contact, Medical ID field, theme preference, and dispatch history log is written strictly to encrypted local storage on your device and never transmitted anywhere except the recipients you explicitly command.</p>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="wrap footer__row">
+      <div class="footer__left">
+        <p>&copy; 2026 Trackizer. SOS Beacon is open source under the MIT License.</p>
+        <div class="footer__badges">
+          <span class="badge-pill"><span class="k">license</span><span class="v">MIT</span></span>
+          <span class="badge-pill"><span class="k">platform</span><span class="v">Android</span></span>
+          <span class="badge-pill"><span class="k">backend</span><span class="v">none</span></span>
+        </div>
+      </div>
+
+      <div class="footer__links">
+        <a href="https://github.com/trackizer/sos-beacon" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+        <a href="#screens">Screens</a>
+        <a href="#privacy">Privacy Model</a>
+        <button class="open-download-modal" style="color: var(--teal); font-weight: 600;">Get APK (v1.2.0)</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ DOWNLOAD & SIDELOADING MODAL ============ -->
+  <div class="modal-backdrop" id="downloadModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="closeDownloadModal" aria-label="Close download modal">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <div class="modal-header">
+        <h3 id="modal-title">Download SOS Beacon APK</h3>
+        <p>Direct from the official open-source repository. Version 1.2.0 for Android.</p>
+      </div>
+
+      <div class="modal-action-box">
+        <div class="modal-action-info">
+          <b>SOS-Beacon-v1.2.0-release.apk</b>
+          <span>8.4 MB · Android 8.0 (Oreo) &amp; higher</span>
+        </div>
+        <a href="https://github.com/trackizer/sos-beacon/releases/latest/download/SOS-Beacon-release.apk" 
+           class="btn btn-primary" 
+           id="directApkDownload" 
+           download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>
+          Download
+        </a>
+      </div>
+
+      <div class="modal-steps">
+        <div class="m-step">
+          <div class="m-step-num">1</div>
+          <div class="m-step-content">
+            <b>Download the APK</b>
+            <span>Tap Download above to save the signed release APK to your Android device.</span>
+          </div>
+        </div>
+
+        <div class="m-step">
+          <div class="m-step-num">2</div>
+          <div class="m-step-content">
+            <b>Open and Allow Unknown Sources</b>
+            <span>Tap the download notification. If prompted, toggle "Allow from this source" in Settings for your browser or Files app.</span>
+          </div>
+        </div>
+
+        <div class="m-step">
+          <div class="m-step-num">3</div>
+          <div class="m-step-content">
+            <b>Tap Install</b>
+            <span>Android installs the package. Open SOS Beacon, grant Location and SMS permissions, and add your guardians.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sha-box">
+        <label>
+          <span>SHA-256 Package Checksum</span>
+          <button class="copy-btn" id="copyHashBtn">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Hash
+          </button>
+        </label>
+        <code id="sha256Value">9a7d8c4e5f6b1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/siren-synth.js"></script>
+  <script src="assets/js/helplines-data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

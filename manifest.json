@@ -1,0 +1,16 @@
+{
+  "name": "SOS Beacon — Personal Safety & Emergency Dispatch",
+  "short_name": "SOS Beacon",
+  "description": "One-tap emergency dispatch app: GPS broadcast, piercing sirens, guardian alerts, and Medical ID. 100% on-device, zero backend.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0E0E12",
+  "theme_color": "#FF3B30",
+  "icons": [
+    {
+      "src": "assets/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
