@@ -1,5 +1,5 @@
 /**
- * SOS Beacon - Global Emergency Helplines Database
+ * SOS BEACON- Global Emergency Helplines Database
  * 30+ Countries with Police, Medical, Fire, and Universal Emergency Numbers
  */
 

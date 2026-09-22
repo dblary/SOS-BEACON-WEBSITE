@@ -1,4 +1,4 @@
-# SOS Beacon — Official Website & Showcase
+# SOS BEACON— Official Website & Showcase
 
 > **Instant Personal Safety & Emergency Response Network**  
 > One tap fires a piercing siren, broadcasts GPS coordinates to every guardian, and logs the incident — all from an Android phone that never phones home. 100% on-device, zero backend, $0 forever.
@@ -104,4 +104,4 @@ website-sos becon/
 
 ## 🛡️ License
 
-SOS Beacon is open-source software released under the [MIT License](https://opensource.org/licenses/MIT).
+SOS BEACONis open-source software released under the [MIT License](https://opensource.org/licenses/MIT).

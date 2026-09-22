@@ -1,4 +1,4 @@
-# Netlify configuration for SOS Beacon static website
+# Netlify configuration for SOS BEACONstatic website
 [build]
   publish = "."
 

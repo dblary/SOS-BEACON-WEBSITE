@@ -1,6 +1,6 @@
 {
-  "name": "SOS Beacon — Personal Safety & Emergency Dispatch",
-  "short_name": "SOS Beacon",
+  "name": "SOS BEACON— Personal Safety & Emergency Dispatch",
+  "short_name": "SOS BEACON",
   "description": "One-tap emergency dispatch app: GPS broadcast, piercing sirens, guardian alerts, and Medical ID. 100% on-device, zero backend.",
   "start_url": "./",
   "display": "standalone",

@@ -1,7 +1,7 @@
 {
   "name": "sos-beacon-website",
   "version": "1.2.0",
-  "description": "Production landing page and interactive showcase for the SOS Beacon Android emergency response app.",
+  "description": "Production landing page and interactive showcase for the SOS BEACONAndroid emergency response app.",
   "scripts": {
     "start": "npx -y serve . -l 3000",
     "dev": "npx -y serve . -l 3000"

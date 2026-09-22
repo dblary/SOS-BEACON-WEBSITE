@@ -1,5 +1,5 @@
 /**
- * SOS Beacon - Web Audio Siren Synthesizer
+ * SOS BEACON- Web Audio Siren Synthesizer
  * Generates realistic emergency siren profiles client-side via native Web Audio API.
  * Profiles:
  *  - Police Wail
@@ -55,20 +55,20 @@ class SirenSynthesizer {
       try {
         this.oscillator.stop();
         this.oscillator.disconnect();
-      } catch (e) {}
+      } catch (e) { }
       this.oscillator = null;
     }
     if (this.modulator) {
       try {
         this.modulator.stop();
         this.modulator.disconnect();
-      } catch (e) {}
+      } catch (e) { }
       this.modulator = null;
     }
     if (this.gainNode) {
       try {
         this.gainNode.disconnect();
-      } catch (e) {}
+      } catch (e) { }
       this.gainNode = null;
     }
     if (this.animFrame) {

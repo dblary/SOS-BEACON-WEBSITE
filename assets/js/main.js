@@ -1,5 +1,5 @@
 /**
- * SOS Beacon - Main Website Controller
+ * SOS BEACON- Main Website Controller
  * Handles gallery tabs, mobile drawer, APK download modal,
  * siren audio controls, and interactive SOS simulator.
  */
@@ -215,7 +215,7 @@ function initSosSimulator() {
 
   sosBtn.addEventListener('click', () => {
     if (isTriggered) return;
-    
+
     // Start 3 second arming countdown
     let count = 3;
     sosBtn.classList.add('arming');
@@ -236,7 +236,7 @@ function initSosSimulator() {
         if (simStandbyCard) simStandbyCard.style.display = 'none';
         if (simActiveCard) simActiveCard.style.display = 'block';
         if (simPulseRing) simPulseRing.classList.add('emergency-active');
-        
+
         // Optional quick audible confirmation
         if (window.sirenSynth) {
           window.sirenSynth.play('police');
