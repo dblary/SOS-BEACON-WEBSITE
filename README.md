@@ -9,25 +9,25 @@
 
 This website is built with vanilla modern HTML5, CSS3, and JavaScript with **zero build steps required**. It is 100% ready to deploy to any static hosting provider.
 
-### Option 1: GitHub Pages (Recommended for Open Source)
-1. Push this folder to your GitHub repository (e.g., `trackizer/sos-beacon` or `sos-beacon-website`).
-2. Go to **Settings > Pages**.
-3. Under **Build and deployment > Source**, select **Deploy from a branch**.
-4. Choose `main` branch and `/ (root)` folder, then click **Save**.
-5. Your site is live in ~60 seconds!
+### Option 1: Cloudflare Pages (Direct GitHub Integration)
+1. Push this repository to your GitHub account (see step-by-step commands below).
+2. Go to your [Cloudflare Dashboard](https://dash.cloudflare.com/) > **Workers & Pages** > **Create application** > **Pages** > **Connect to Git**.
+3. Select your GitHub repository.
+4. Set the build settings:
+   - **Framework preset**: `None`
+   - **Build command**: *(leave empty)*
+   - **Build output directory**: `/` (or leave empty/root)
+5. Click **Save and Deploy**.
+6. Cloudflare Pages automatically configures global CDN caching, SSL, and security headers from [`_headers`](./_headers).
 
-### Option 2: Vercel
-1. Install the Vercel CLI (`npm i -g vercel`) or connect your GitHub repository in the Vercel dashboard.
-2. Run `vercel` in this folder.
-3. Pre-configured headers and caching are already included in [`vercel.json`](./vercel.json).
+### Option 2: GitHub Pages
+1. Go to **Settings > Pages** in your GitHub repository.
+2. Under **Build and deployment > Source**, select **Deploy from a branch** (`main` / `/ (root)`).
+3. Click **Save**.
 
-### Option 3: Netlify
-1. Connect your repository to Netlify or drag-and-drop this entire folder into the Netlify Drop dashboard.
-2. Pre-configured security headers and caching are already included in [`netlify.toml`](./netlify.toml).
-
-### Option 4: Cloudflare Pages
-1. Connect your GitHub/GitLab repository.
-2. Set Build command: *(leave empty)*, Output directory: `.` (root).
+### Option 3: Vercel or Netlify
+- **Vercel**: Run `npx vercel` or connect via the Vercel dashboard.
+- **Netlify**: Connect your GitHub repo or drag-and-drop into [Netlify Drop](https://app.netlify.com/drop).
 
 ---
 
