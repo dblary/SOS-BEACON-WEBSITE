@@ -503,8 +503,34 @@ header.nav {
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 14px;
   margin-bottom: 34px;
+}
+
+.hero__playstore-btn {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  border-radius: 10px;
+  transition: transform var(--transition-fast), filter var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.hero__playstore-btn img {
+  height: 52px;
+  width: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+.hero__playstore-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.6);
+}
+
+.hero__playstore-btn:active {
+  transform: translateY(0);
 }
 
 .hero__trust {
@@ -1708,6 +1734,11 @@ footer {
 
   .hero__actions .btn {
     flex: 1 1 auto;
+  }
+
+  .hero__actions .hero__playstore-btn {
+    display: inline-flex;
+    justify-content: center;
   }
 
   .siren-console {
